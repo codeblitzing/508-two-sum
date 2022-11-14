@@ -3,7 +3,8 @@ using namespace std;
 
 class Solution {
 public:
-  vector<int> twoSum2(vector<int>& nums, int target) {
+  // Naive
+  vector<int> twoSum_X(vector<int>& nums, int target) {
     size_t len = nums.size();
     auto start = nums.data();
     auto end = start + len;
@@ -21,23 +22,17 @@ public:
     return {0,1};
   }
 
-
+  // Use hashmap to make it O(nlog(n))
   vector<int> twoSum(vector<int>& nums, int target) {
     size_t len = nums.size();
-//    if (len < 10) {
-//      return twoSum2(nums, target);
-//    }
 
     unordered_map<int, int> hash_map;
 
     auto start = nums.data();
-    auto end1 = start + (len / 3);
     auto end = start + len;
     int i = 0;
     auto p1 = start;
-//    for (; p1 < end1; p1++, i++) {
-//      hash_map.insert(make_pair(*p1, i));
-//    }
+
     for (; p1 < end; p1++, i++) {
       auto it = hash_map.find(target - *p1);
       if (it != hash_map.end()) {
@@ -47,15 +42,6 @@ public:
       hash_map.insert(make_pair(*p1, i));
     }
 
-//    i=0;
-//    for (p1 = start; p1 < end; p1++, i++) {
-//      auto it = hash_map.find(target - *p1);
-//      if (it != hash_map.end() && i != it->second) {
-//        return {int(p1-start), it->second};
-//      }
-//    }
-
-    return {0,1};
   }
 };
 
