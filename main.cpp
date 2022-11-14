@@ -30,10 +30,9 @@ public:
 
     auto start = nums.data();
     auto end = start + len;
-    int i = 0;
-    auto p1 = start;
 
-    for (; p1 < end; p1++, i++) {
+    auto p1 = start;
+    for (int i = 0; p1 < end; p1++, i++) {
       auto it = hash_map.find(target - *p1);
       if (it != hash_map.end()) {
         return {i, it->second};
@@ -42,6 +41,7 @@ public:
       hash_map.insert(make_pair(*p1, i));
     }
 
+    return {0,1};
   }
 };
 
